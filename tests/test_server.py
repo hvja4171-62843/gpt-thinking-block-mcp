@@ -52,7 +52,11 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(server.normalize_prompt_language("zh"), "zh-CN")
         self.assertEqual(server.normalize_prompt_language("zh_CN"), "zh-CN")
         thinking_description = server.THINKING_DESCRIPTIONS["zh-CN"]
-        self.assertIn("用户看不到这个 scratchpad", thinking_description)
+        self.assertIn("会作为中间卡片展示在最终回答之前", thinking_description)
+        self.assertIn("但不是最终回答", thinking_description)
+        self.assertIn("即使会被用户看见", thinking_description)
+        self.assertIn("不要为了展示而解释、修饰、包装或表演", thinking_description)
+        self.assertNotIn("用户看不到这个 scratchpad", thinking_description)
         self.assertIn("不要面向用户说话", thinking_description)
         self.assertIn("自然流动且连贯的长段落", thinking_description)
         self.assertIn("在担心什么、忍住了什么", thinking_description)
